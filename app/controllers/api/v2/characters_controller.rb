@@ -1,0 +1,39 @@
+class Api::V2::CharactersController < ApplicationController
+
+  def index
+    @characters = Character.all
+  end
+
+  def create
+    @character = Character.new(
+                              first_name: params[:first_name],
+                              last_name: params[:last_name],
+                              house: params[:house]
+                              )
+    @character.save
+    render :show
+  end
+
+  def show
+    @character = Character.find(params[:id])
+  end
+
+  def update
+    @character = Character.find(params[:id])
+
+    @character.assign_attributes(
+                                first_name: params[:first_name],
+                                last_name: params[:last_name],
+                                house: params[:house]
+                                )
+    @character.save
+    render :show
+  end
+
+  def destroy
+    @character = Character.find(params[:id])
+    @character.destroy
+    render :index
+  end
+
+end
