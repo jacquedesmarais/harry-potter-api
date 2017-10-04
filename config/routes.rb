@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/characters' => 'characters#index'
+      get '/characters/new' => 'characters#new'
       post '/characters' => 'characters#create'
       get '/characters/:id' => 'characters#show'
       patch '/characters/:id' => 'characters#update'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
 
     namespace :v2 do
       get '/characters' => 'characters#index'
+      get '/characters/new' => 'characters#new'
       post '/characters' => 'characters#create'
       get '/characters/:id' => 'characters#show'
       patch '/characters/:id' => 'characters#update'
