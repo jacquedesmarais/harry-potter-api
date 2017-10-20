@@ -1,0 +1,15 @@
+<div id="app">
+  <h1>Harry Potter Characters</h1>
+  <div v-for="character in characters">
+    <h3 v-on:click="toggleHouse(character)">{{ character.first_name }} {{ character.last_name }}</h3>
+    <div v-if="character.houseVisible"><h4>{{ character.house }}</h4></div>
+    <h6 v-on:click="deletePerson(character)">delete</h6>
+  </div>
+  First Name: <input v-model="newPersonFirstName"><br>
+  Last Name: <input v-model="newPersonLastName"><br>
+  House: <input v-model="newPersonHouse"><br>
+  <ul>
+    <li v-for="error in errors">{{ error }}</li>
+  </ul>
+  <button v-on:click="addPerson()">Add Character</button>
+</div>

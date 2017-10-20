@@ -10,8 +10,11 @@ class Api::V1::CharactersController < ApplicationController
                               last_name: params[:last_name],
                               house: params[:house]
                               )
-    @character.save
-    render :show
+    if @character.save
+      render :show
+    else
+      render json: { errors: @character.errors.full_messages }, status: 422
+    end
   end
 
   def show
