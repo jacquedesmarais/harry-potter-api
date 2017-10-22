@@ -1,10 +1,18 @@
 <div id="app">
-  <h1>Harry Potter Characters</h1>
-  <div v-for="character in characters">
-    <h3 v-on:click="toggleHouse(character)">{{ character.first_name }} {{ character.last_name }}</h3>
-    <div v-if="character.houseVisible"><h4>{{ character.house }}</h4></div>
-    <h6 v-on:click="deletePerson(character)">delete</h6>
+  <div>
+    Search Term: <input v-model="searchTermFilter" list="names">
+    <datalist id="names">
+      <option v-for="character in characters">{{ character.first_name }}</option>
+    </datalist>
   </div>
+  <h1>Harry Potter Characters</h1>
+  <transition-group name="zoomDown">
+    <div v-for="character in characters" v-if="isValidCharacter(character)" v-bind:key="character.id">
+      <h3 v-on:click="toggleHouse(character)">{{ character.first_name }} {{ character.last_name }}</h3>
+      <div v-if="character.houseVisible"><h4>{{ character.house }}</h4></div>
+      <h6 v-on:click="deletePerson(character)">delete</h6>
+    </div>
+</transition-group>
   First Name: <input v-model="newPersonFirstName"><br>
   Last Name: <input v-model="newPersonLastName"><br>
   House: <input v-model="newPersonHouse"><br>
